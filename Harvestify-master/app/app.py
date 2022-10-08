@@ -152,6 +152,12 @@ def weed_recommend():
     return render_template('weed.html', title=title)
 
 
+@ app.route('/crop_quality')
+def crop_quality():
+    title = 'Harvestify - Crop Quality'
+    return render_template('crop_quality.html', title=title)
+
+
 
 @ app.route('/fertilizer')
 def fertilizer_recommendation():
@@ -167,6 +173,46 @@ def fertilizer_recommendation():
 # ===============================================================================================
 
 # RENDER PREDICTION PAGES
+@ app.route('/crop_quality_prediction', methods=['POST'])
+def crop_quality_prediction():
+    title = 'Harvestify - Crop Quality Prediction'
+
+    if request.method == 'POST':
+        N = int(request.form['nitrogen'])
+        P = int(request.form['phosphorous'])
+        K = int(request.form['pottasium'])
+        ph = float(request.form['ph'])
+        rainfall = float(request.form['rainfall'])
+        crop = request.form['crop']
+        quality = 0
+        # state = request.form.get("stt")
+        city = request.form.get("city")
+
+        '''if weather_fetch(city) != None:
+            temperature, humidity = weather_fetch(city)
+            data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
+            my_prediction = crop_recommendation_model.predict(data)
+            final_prediction = my_prediction[0]
+            print(my_prediction)
+            if final_prediction == crop :
+                quality = 100
+            #else:
+                #quality = '''
+            
+        if ph >= 5 and ph <= 7:
+            quality = ph * 14
+        if ph >= 1 and ph < 5:
+            quality = ph * 14
+        if ph > 7 :
+            quality = ph * 7.3
+
+        return render_template('crop-quality-result.html', prediction=quality, crop=crop, title=title)
+
+        #else:
+
+            #return render_template('try_again.html', title=title)
+
+
 
 # render crop recommendation result page
 

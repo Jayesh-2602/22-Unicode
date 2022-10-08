@@ -8,7 +8,7 @@
 <!--Form Section-->
 <br /><br />
 <h2 style="text-align: center; margin: 0px; color: black">
-  <b>Recommendation of Yield based on soil</b>
+  <b>Recommendation of Crop Quality based on soil</b>
 </h2>
 <br />
 
@@ -22,7 +22,7 @@
     padding: 10px 10px;
   "
 >
-  <form method="POST" action="{{ url_for('crop_prediction') }}">
+  <form method="POST" action="{{ url_for('crop_quality_prediction') }}">
     <div class="form-group">
       <label for="Nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
       <input
@@ -84,6 +84,18 @@
         id="Rainfall"
         name="rainfall"
         placeholder="Enter the value"
+        style="font-weight: bold"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="Crop" style="font-size: 17px"><b>Crop</b></label>
+      <input
+        type="test"
+        class="form-control"
+        id="Crop"
+        name="crop"
+        placeholder="Enter the crop name"
         style="font-weight: bold"
         required
       />
